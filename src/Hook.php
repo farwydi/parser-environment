@@ -101,14 +101,14 @@ class Hook
         $body = $response->getBody();
         $this->logger->info($this->mark . " do: Body size: " . strlen($body));
 
-        $this->logger->info($this->mark . " do: Validation");
-        if (!$this->parser->validation($body)) {
-            throw new HookException("Bad validation", 1);
-        }
-
         $this->logger->info($this->mark . " do: Before");
         if (!$this->parser->before($this->config)) {
             throw new HookException("Bad before init", 2);
+        }
+
+        $this->logger->info($this->mark . " do: Validation");
+        if (!$this->parser->validation($body)) {
+            throw new HookException("Bad validation", 1);
         }
 
         $this->logger->info($this->mark . " do: Run");

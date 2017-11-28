@@ -49,7 +49,11 @@ class HookTest extends TestCase
             ->method('send')
             ->willReturn($mockResponse);
 
+
         $parser = $this->createMock(IParser::class);
+        $parser->method('before')
+            ->willReturn(true);
+
         $parser->method('validation')
             ->willReturn(false);
 

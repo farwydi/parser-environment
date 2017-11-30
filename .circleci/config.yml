@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: icddex/php-images:run-tests
+      - image: farwydi/php-images:tests
 
     working_directory: ~/repo
 

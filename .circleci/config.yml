@@ -15,11 +15,12 @@ jobs:
           - v1-dependencies-
 
       - run: curl -sS https://getcomposer.org/installer | php
-      - run: php composer.phar install -n --prefer-dist
+      - run: php composer.phar install -n --prefer-dist --no-scripts --no-progress
 
       - save_cache:
           paths:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
 
-      - run: vendor/bin/phpunit --configuration phpunit.xml --coverage-text --colors=never
+      - run: vendor/bin/phpunit --configuration phpunit.ci.xml --coverage-clover=coverage.xml
+      - run: bash <(curl -s https://codecov.io/bash)

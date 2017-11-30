@@ -22,4 +22,4 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
 
       - run: vendor/bin/phpunit --configuration phpunit.ci.xml --coverage-clover=coverage.xml
-      - run: bash <(curl -s https://codecov.io/bash)
+      - run: vendor/bin/codacycoverage clover coverage.xml

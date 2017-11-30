@@ -14,8 +14,7 @@ jobs:
           - v1-dependencies-{{ checksum "composer.json" }}
           - v1-dependencies-
 
-      - run: curl -sS https://getcomposer.org/installer | php
-      - run: php composer.phar install -n --prefer-dist --no-scripts --no-progress
+      - run: composer install -n --prefer-dist --no-scripts --no-progress
 
       - save_cache:
           paths:
